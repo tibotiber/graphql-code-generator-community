@@ -181,7 +181,7 @@ export class ReactQueryVisitor extends ClientSideBaseVisitor<ReactQueryRawPlugin
         query += `\nuse${operationName}.document = ${documentVariableName};\n`;
       }
       if (this.config.exposeQueryKeys) {
-        query += `\n${generateQueryKeyMaker(node, operationName, operationVariablesTypes, hasRequiredVariables)};\n`;
+        query += `\n${generateQueryKeyMaker(node, operationName, operationVariablesTypes, false)};\n`;
       }
       if (this.config.addInfiniteQuery) {
         query += `\n${this.fetcher.generateInfiniteQueryHook(
@@ -193,12 +193,7 @@ export class ReactQueryVisitor extends ClientSideBaseVisitor<ReactQueryRawPlugin
           hasRequiredVariables
         )}\n`;
         if (this.config.exposeQueryKeys) {
-          query += `\n${generateInfiniteQueryKeyMaker(
-            node,
-            operationName,
-            operationVariablesTypes,
-            hasRequiredVariables
-          )};\n`;
+          query += `\n${generateInfiniteQueryKeyMaker(node, operationName, operationVariablesTypes, false)};\n`;
         }
       }
 
